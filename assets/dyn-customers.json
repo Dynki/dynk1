@@ -1,0 +1,7 @@
+{
+  "data": [
+      { "id": 1, "code": "DYN0000001", "name": "Borgin and Burkes", "notes": "Purveyors or historical artifacts" },
+      { "id": 2, "code": "DYN0000002", "name": "Olivanders", "notes": "Makers of find wands, since 382 B.C." },
+      { "id": 3, "code": "DYN0000003", "name": "Flourish and Blotts", "notes": "Booksellers" }
+  ]
+}
