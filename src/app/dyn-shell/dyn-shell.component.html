@@ -1,7 +1,7 @@
 <div fxLayout="column" fxFill fxFlex>
   <dyn-toolbar (notify)="onNotifyClicked($event)"></dyn-toolbar>
 
-  <md-sidenav-layout fxFill fxFlex>
+  <md-sidenav-container fxFill fxFlex>
 
     <md-sidenav #dynsidebar class="dyn-sidenav" mode="side" >
       <div *ngFor="let menuitem of menuitems">
@@ -16,6 +16,6 @@
       breadcrumb
     </router-outlet>
 
-  </md-sidenav-layout>
+  </md-sidenav-container>
 </div>
 
