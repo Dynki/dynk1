@@ -8,7 +8,7 @@ import { Customer } from './dyn-customer.model';
 
 @Injectable()
 export class CustomerService {
-  private customersUrl = './app/dyn-customers/shared/dyn-customers.json';  // URL to web API
+  private customersUrl = './dyn-customers.json';  // URL to web API
   
   constructor (private http: Http) {}
   
