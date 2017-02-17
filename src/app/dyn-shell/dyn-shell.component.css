@@ -1,0 +1,15 @@
+.dyn-sidenav{
+  background-color: #2f475b;
+  width: 264px;
+}
+
+.dyn-menu-item{
+  width: 100%;
+  text-align: left;
+  height: 48px;
+}
+
+.dyn-menu-item-text{
+  color: #ffffff;
+  padding-left: 10px;
+}

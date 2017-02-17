@@ -1,0 +1,21 @@
+<div fxLayout="column" fxFill fxFlex>
+  <dyn-toolbar (notify)="onNotifyClicked($event)"></dyn-toolbar>
+
+  <md-sidenav-layout fxFill fxFlex>
+
+    <md-sidenav #dynsidebar class="dyn-sidenav" mode="side" >
+      <div *ngFor="let menuitem of menuitems">
+        <button fxLayout="row" md-button [routerLink]="menuitem.link" class="dyn-menu-item">
+          <md-icon class="dyn-menu-icon" svgIcon={{menuitem.icon}}></md-icon>
+          <span class="dyn-menu-item-text">{{menuitem.name}}</span>
+        </button>
+      </div>
+    </md-sidenav>
+
+    <router-outlet>
+      breadcrumb
+    </router-outlet>
+
+  </md-sidenav-layout>
+</div>
+
