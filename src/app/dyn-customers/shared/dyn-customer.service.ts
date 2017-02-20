@@ -3,20 +3,32 @@ import { Http, Response }          from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/toPromise';
 import { Customer } from './dyn-customer.model';
 
 @Injectable()
 export class CustomerService {
-  private customersUrl = './dyn-customers.json';  // URL to web API
+  private customersUrl = './app/dyn-customers/shared/dyn-customers.json';  // URL to web API
   
   constructor (private http: Http) {}
   
   getCustomers (): Observable<Customer[]> {
-    return this.http.get(this.customersUrl)
+
+    let customer$ = this.http.get(this.customersUrl)
                     .map(this.extractData)
                     .catch(this.handleError);
-  }
+
+    return customer$;  
+  } 
+
+  getCustomer(id: number): Observable<Customer> {
+
+    return this.getCustomers()
+            .map(each => { return each.find(customer => customer.id === id)} )
+            .do(o => console.log(o))
+           .catch(this.handleError)
+  } 
 
   private extractData(res: Response) {
 

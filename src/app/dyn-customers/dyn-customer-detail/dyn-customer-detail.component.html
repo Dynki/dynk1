@@ -2,7 +2,8 @@
   <h2>{{customer.name}}</h2>
   <div><label>id: </label>{{customer.id}}</div>
   <div>
-    <label>code: </label>
-    <input [(ngModel)]="customer.code" placeholder="code"/>
+    <md-input-container>
+      <input mdInput [(ngModel)]="customer.code" placeholder="code"/>
+    </md-input-container>
   </div>
 </div>

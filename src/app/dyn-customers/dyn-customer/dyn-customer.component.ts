@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MdIconRegistry} from '@angular/material';
+import { MdIconRegistry } from '@angular/material';
 import { Observable }       from 'rxjs/Observable';
+import { Router }   from '@angular/router';
 
 import { Customer } from '../shared/dyn-customer.model';
 import { CustomerService } from '../shared/dyn-customer.service';
@@ -16,7 +17,7 @@ export class CustomerComponent {
   errorMessage: string;
   customers: Customer[];
 
-  constructor (private customerService: CustomerService) { 
+  constructor (private router: Router, private customerService: CustomerService) { 
 
   }
 
@@ -31,4 +32,7 @@ export class CustomerComponent {
                        error =>  this.errorMessage = <any>error);
   }
 
+  onSelect(customer: Customer) {
+    this.router.navigate(['/customer', customer.id]);
+  }
 }

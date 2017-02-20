@@ -8,11 +8,13 @@ import { MaterialModule } from '@angular/material';
 
 import { ToolbarComponent } from './dyn-toolbar/dyn-toolbar.component';
 import { CustomerComponent } from '../dyn-customers/dyn-customer/dyn-customer.component';
+import { CustomerDetailComponent } from '../dyn-customers/dyn-customer-detail/dyn-customer-detail.component';
 
 import 'hammerjs';
   
 const appRoutes: Routes = [
-  { path: 'customers', component: CustomerComponent }
+  { path: 'customers', component: CustomerComponent },
+  { path: 'customer/:id', component: CustomerDetailComponent }
 ];
 
 // other imports 
@@ -20,6 +22,7 @@ const appRoutes: Routes = [
   declarations: [
     ToolbarComponent,
     CustomerComponent,
+    CustomerDetailComponent
   ],
   imports: [
     MaterialModule.forRoot(),
@@ -31,6 +34,7 @@ const appRoutes: Routes = [
   exports: [
     ToolbarComponent,
     CustomerComponent,
+    CustomerDetailComponent,
     RouterModule,
     MaterialModule
   ],
