@@ -1,9 +1,8 @@
-<div *ngIf="customer">
-  <h2>{{customer.name}}</h2>
-  <div><label>id: </label>{{customer.id}}</div>
-  <div>
-    <md-input-container>
-      <input mdInput [(ngModel)]="customer.code" placeholder="code"/>
-    </md-input-container>
-  </div>
-</div>
+<md-card class="dyn-card flex-container" *ngIf="customer" fxLayout="column" fxFlex fxFill>
+  <md-input-container>
+    <input mdInput [(ngModel)]="customer.code" placeholder="code"/>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [(ngModel)]="customer.name" placeholder="name"/>
+  </md-input-container>
+</md-card>

@@ -1,0 +1,6 @@
+<div fxLayout="row" class="dyn-breadcrumb">
+  <a routerLink="" class="breadcrumb">Home</a>
+  <div *ngFor="let breadcrumb of breadcrumbs">
+    <a [routerLink]="[breadcrumb.routerLink]">{{breadcrumb.label}}</a>
+  </div>
+</div>

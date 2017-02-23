@@ -5,16 +5,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes }   from '@angular/router';
 import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ToolbarComponent } from './dyn-toolbar/dyn-toolbar.component';
 import { CustomerComponent } from '../dyn-customers/dyn-customer/dyn-customer.component';
 import { CustomerDetailComponent } from '../dyn-customers/dyn-customer-detail/dyn-customer-detail.component';
+import { BreadcrumbComponent } from './dyn-breadcrumb/dyn-breadcrumb.component';
+import { BreadcrumbService } from './dyn-breadcrumb/dyn-breadcrumb.service';
 
 import 'hammerjs';
   
 const appRoutes: Routes = [
-  { path: 'customers', component: CustomerComponent },
-  { path: 'customer/:id', component: CustomerDetailComponent }
+  { path: 'customers', component: CustomerComponent, data: { breadcrumb: "customers" } },
+  { path: 'customer/:id', component: CustomerDetailComponent, data: { breadcrumb: 'customer:/id'} }
 ];
 
 // other imports 
@@ -22,23 +25,26 @@ const appRoutes: Routes = [
   declarations: [
     ToolbarComponent,
     CustomerComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    BreadcrumbComponent
   ],
   imports: [
     MaterialModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FlexLayoutModule
   ],
   exports: [
     ToolbarComponent,
     CustomerComponent,
     CustomerDetailComponent,
+    BreadcrumbComponent,
     RouterModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [BreadcrumbService],
 })
 export class ShellModule { 
 }

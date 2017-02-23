@@ -26,3 +26,7 @@ html, body {
 .dyn-menu-icon svg {
   fill: #9b9b9b;
 }
+
+.dyn-card {
+  margin: 10px;
+}
