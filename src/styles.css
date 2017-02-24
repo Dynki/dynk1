@@ -11,7 +11,8 @@ html, body {
 }
 
 .dyn-icons-white svg {
-  fill: #e1dee3;
+  /*fill: #e1dee3;*/
+  fill: #ffffff;
 }
 
 .dyn-icons-black svg {
@@ -28,5 +29,5 @@ html, body {
 }
 
 .dyn-card {
-  margin: 10px;
+  margin: 10px !important;
 }

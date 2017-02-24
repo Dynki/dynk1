@@ -1,0 +1,17 @@
+.dyn-breadcrumb-container{
+    margin: 10px;
+}
+
+.dyn-breadcrumb{
+    color: #00bcd4;
+    line-height: 1.5;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.dyn-breadcrumb-separator{
+    color: #999;
+    font-weight: normal;
+    margin: 10px;
+}

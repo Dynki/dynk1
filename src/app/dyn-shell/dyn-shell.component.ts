@@ -23,6 +23,7 @@ export class ShellComponent {
   constructor(iconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon('face', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/face.svg'));
     iconRegistry.addSvgIcon('event', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/event.svg'));
+    iconRegistry.addSvgIcon('save', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/save.svg'));
   }
 
   onNotifyClicked(message: String): void {

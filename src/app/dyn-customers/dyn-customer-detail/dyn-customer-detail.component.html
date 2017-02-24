@@ -1,8 +1,15 @@
-<md-card class="dyn-card flex-container" *ngIf="customer" fxLayout="column" fxFlex fxFill>
-  <md-input-container>
-    <input mdInput [(ngModel)]="customer.code" placeholder="code"/>
-  </md-input-container>
-  <md-input-container>
-    <input mdInput [(ngModel)]="customer.name" placeholder="name"/>
-  </md-input-container>
-</md-card>
+<div class="dyn-card">
+  <md-card class="flex-container" *ngIf="customer">
+    <div fxLayout="row" fxFlex fxLayoutAlign="end center">
+      <button md-button (click)="onClick()"><md-icon class="dyn-icons-black" svgIcon="save"></md-icon></button>
+    </div>
+    <div fxLayout="column" fxFlex>
+      <md-input-container>
+        <input mdInput [(ngModel)]="customer.code" placeholder="code"/>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [(ngModel)]="customer.name" placeholder="name"/>
+      </md-input-container>
+    </div>
+  </md-card>
+</div>

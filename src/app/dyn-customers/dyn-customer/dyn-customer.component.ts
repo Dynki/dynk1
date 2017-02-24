@@ -17,13 +17,16 @@ export class CustomerComponent {
   errorMessage: string;
   customers: Customer[];
 
-  constructor (private router: Router, private customerService: CustomerService) { 
+  constructor (
+    private router: Router, 
+    private customerService: CustomerService,
+  ) { 
 
   }
 
   ngOnInit() {
     this.getCustomers();
-  }
+ }
 
   getCustomers() {
     this.customerService.getCustomers()
@@ -33,6 +36,6 @@ export class CustomerComponent {
   }
 
   onSelect(customer: Customer) {
-    this.router.navigate(['/customer', customer.id]);
+    this.router.navigate(['/customers', customer.id]);
   }
 }

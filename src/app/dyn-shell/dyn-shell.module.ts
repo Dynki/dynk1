@@ -11,13 +11,12 @@ import { ToolbarComponent } from './dyn-toolbar/dyn-toolbar.component';
 import { CustomerComponent } from '../dyn-customers/dyn-customer/dyn-customer.component';
 import { CustomerDetailComponent } from '../dyn-customers/dyn-customer-detail/dyn-customer-detail.component';
 import { BreadcrumbComponent } from './dyn-breadcrumb/dyn-breadcrumb.component';
-import { BreadcrumbService } from './dyn-breadcrumb/dyn-breadcrumb.service';
 
 import 'hammerjs';
   
 const appRoutes: Routes = [
   { path: 'customers', component: CustomerComponent, data: { breadcrumb: "customers" } },
-  { path: 'customer/:id', component: CustomerDetailComponent, data: { breadcrumb: 'customer:/id'} }
+  { path: 'customers/:id', component: CustomerDetailComponent, data: { breadcrumb: 'customers:/id'} }
 ];
 
 // other imports 
@@ -44,7 +43,7 @@ const appRoutes: Routes = [
     RouterModule,
     MaterialModule
   ],
-  providers: [BreadcrumbService],
+  providers: [],
 })
 export class ShellModule { 
 }

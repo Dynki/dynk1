@@ -1,10 +1,16 @@
 .dyn-toolbar{
-  background-color: #c6ccd1;
+  background-color: #00bcd4;
 }
 
 .dyn-logo{
-  width: 166px;
-  height: 38px;
+  width: 42px;
+  height: 36px;
   padding-top: 7px;
   margin-left: 10px;
+}
+
+.dyn-heading{
+  padding: 14px;
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
 }
