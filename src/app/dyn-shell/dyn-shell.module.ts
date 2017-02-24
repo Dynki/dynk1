@@ -15,8 +15,8 @@ import { BreadcrumbComponent } from './dyn-breadcrumb/dyn-breadcrumb.component';
 import 'hammerjs';
   
 const appRoutes: Routes = [
-  { path: 'customers', component: CustomerComponent, data: { breadcrumb: "customers" } },
-  { path: 'customers/:id', component: CustomerDetailComponent, data: { breadcrumb: 'customers:/id'} }
+  { path: 'customers', component: CustomerComponent, data: { breadcrumb: "customers", parents: [] } },
+  { path: 'customers/:id', component: CustomerDetailComponent, data: { breadcrumb: 'selected customer', parents: ['customers'] } }
 ];
 
 // other imports 

@@ -67,9 +67,11 @@ export class BreadcrumbComponent implements OnInit {
 
       for (let childUrl of child.snapshot.url){
         url += '/' + childUrl.path;
+
+
         //add breadcrumb
         let breadcrumb: IBreadcrumb = {
-          label: childUrl.path,
+          label: child.snapshot.data['parents'].indexOf(childUrl.path) > -1 ? childUrl.path : child.snapshot.data['breadcrumb'],
           params: child.snapshot.params,
           url: url
         };

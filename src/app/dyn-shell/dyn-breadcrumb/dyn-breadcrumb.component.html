@@ -1,7 +1,7 @@
 <div fxLayout="row" class="dyn-breadcrumb-container">
   <a class="dyn-breadcrumb" routerLink="">Home</a>
-  <div *ngFor="let breadcrumb of breadcrumbs">
+  <div *ngFor="let breadcrumb of breadcrumbs; let last = last">
     <span class="dyn-breadcrumb-separator">/</span>
-    <a class="dyn-breadcrumb" [routerLink]="[breadcrumb.url]">{{breadcrumb.label}}</a>
+    <a class="dyn-breadcrumb" [ngClass]="{ 'dyn-last-breadcrumb': last }" [routerLink]="[breadcrumb.url]">{{breadcrumb.label}}</a>
   </div>
 </div>
