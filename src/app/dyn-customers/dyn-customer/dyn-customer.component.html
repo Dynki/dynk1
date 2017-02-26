@@ -1,5 +1,14 @@
-<md-list>
-  <md-list-item *ngFor="let customer of customers">
-    <button md-button (click)="onSelect(customer)">{{customer.name}}</button>
-  </md-list-item>
-</md-list>
+<div class="dyn-card">
+  <ngx-datatable
+    class="material"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [rows]="customers"
+    [columns]="columns"
+    [limit]="10"
+    (activate)="onActivate($event)"
+    >
+  </ngx-datatable>
+</div>

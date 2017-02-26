@@ -3,21 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes }   from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import 'hammerjs';
 
 import { ToolbarComponent } from './dyn-toolbar/dyn-toolbar.component';
 import { CustomerComponent } from '../dyn-customers/dyn-customer/dyn-customer.component';
 import { CustomerDetailComponent } from '../dyn-customers/dyn-customer-detail/dyn-customer-detail.component';
 import { BreadcrumbComponent } from './dyn-breadcrumb/dyn-breadcrumb.component';
-
-import 'hammerjs';
-  
-const appRoutes: Routes = [
-  { path: 'customers', component: CustomerComponent, data: { breadcrumb: "customers", parents: [] } },
-  { path: 'customers/:id', component: CustomerDetailComponent, data: { breadcrumb: 'selected customer', parents: ['customers'] } }
-];
+import { ShellRoutingModule } from './dyn-shell-routing.module';
 
 // other imports 
 @NgModule({
@@ -32,16 +27,17 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes),
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxDatatableModule,
+    ShellRoutingModule
   ],
   exports: [
     ToolbarComponent,
     CustomerComponent,
     CustomerDetailComponent,
     BreadcrumbComponent,
-    RouterModule,
-    MaterialModule
+    MaterialModule,
+    ShellRoutingModule
   ],
   providers: [],
 })

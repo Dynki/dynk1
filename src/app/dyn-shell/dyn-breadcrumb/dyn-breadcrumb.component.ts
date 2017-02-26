@@ -55,11 +55,6 @@ export class BreadcrumbComponent implements OnInit {
         continue;
       }
 
-      // //verify the custom data property "breadcrumb" is specified on the route
-      // if (!child.snapshot.data.hasOwnProperty(ROUTE_DATA_BREADCRUMB)) {
-      //   continue;
-      // }
-
       //get the route's URL segment
       let routeURL: string = child.snapshot.url.map(segment => segment.path).join("/");
 

@@ -2,8 +2,6 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MdIconRegistry} from '@angular/material';
 
-// import { ShellService } from '../dyn-shell.service';
-
 @Component({
   selector: 'dyn-toolbar',
   templateUrl: './dyn-toolbar.component.html',

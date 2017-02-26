@@ -17,6 +17,12 @@ export class CustomerComponent {
   errorMessage: string;
   customers: Customer[];
 
+  columns = [
+    { prop: 'id' },
+    { name: 'code' },
+    { name: 'name' }
+  ];
+
   constructor (
     private router: Router, 
     private customerService: CustomerService,
@@ -35,7 +41,7 @@ export class CustomerComponent {
                        error =>  this.errorMessage = <any>error);
   }
 
-  onSelect(customer: Customer) {
-    this.router.navigate(['/customers', customer.id]);
+  onActivate(event) {
+    this.router.navigate(['/customers', event.row['id']]);
   }
 }
