@@ -1,7 +1,5 @@
 export class Customer {
   constructor(
-    public id: number,
-    public code: string,
-    public name: string,
-    public notes: string) { }
+    public _id: string,
+    public name: string) { }
 }

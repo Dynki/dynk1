@@ -18,8 +18,6 @@ export class CustomerComponent {
   customers: Customer[];
 
   columns = [
-    { prop: 'id' },
-    { name: 'code' },
     { name: 'name' }
   ];
 
@@ -42,6 +40,6 @@ export class CustomerComponent {
   }
 
   onActivate(event) {
-    this.router.navigate(['/customers', event.row['id']]);
+    this.router.navigate(['/customers', event.row['_id']]);
   }
 }

@@ -3,6 +3,7 @@
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import '~ng2-toasty/bundles/style-material.css';
 
 html, body {
   height: 100%;

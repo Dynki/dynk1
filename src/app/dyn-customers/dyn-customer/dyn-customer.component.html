@@ -1,4 +1,4 @@
-<div class="dyn-card">
+<div class="dyn-card" fxLayout="column">
   <ngx-datatable
     class="material"
     [columnMode]="'force'"
@@ -11,4 +11,5 @@
     (activate)="onActivate($event)"
     >
   </ngx-datatable>
+  <a md-fab class="dyn-btn-bottom-right"><md-icon>add</md-icon></a>
 </div>

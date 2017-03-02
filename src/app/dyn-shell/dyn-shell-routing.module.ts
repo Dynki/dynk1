@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }   from '@angular/router';
 
-import { CustomerComponent } from '../dyn-customers/dyn-customer/dyn-customer.component';
-import { CustomerDetailComponent } from '../dyn-customers/dyn-customer-detail/dyn-customer-detail.component';
+import { AuthGuard } from '../dyn-auth/shared/dyn-auth-guard.service';
+import { AuthService} from '../dyn-auth/shared/dyn-auth.service';
 
+import { ShellComponent } from './dyn-shell.component';
+ 
 const appRoutes: Routes = [
-  { path: 'customers', component: CustomerComponent, data: { breadcrumb: "customers", parents: [] } },
-  { path: 'customers/:id', component: CustomerDetailComponent, data: { breadcrumb: 'selected customer', parents: ['customers'] } }
+  { path: 'home', 
+    component: ShellComponent, 
+    data: { breadcrumb: "customers", parents: [] },
+  }
 ];
 
 // other imports 
@@ -17,7 +21,7 @@ const appRoutes: Routes = [
   exports: [
     RouterModule,
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService],
 })
 export class ShellRoutingModule { 
 }
