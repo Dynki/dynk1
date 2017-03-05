@@ -7,9 +7,10 @@ import { AuthService} from '../dyn-auth/shared/dyn-auth.service';
 import { ShellComponent } from './dyn-shell.component';
  
 const appRoutes: Routes = [
-  { path: 'home', 
+  { path: '', 
     component: ShellComponent, 
     data: { breadcrumb: "customers", parents: [] },
+    canActivate: [AuthGuard]
   }
 ];
 

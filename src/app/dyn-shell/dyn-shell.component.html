@@ -1,9 +1,9 @@
 <div fxLayout="column" fxFill fxFlex>
-  <dyn-toolbar (notify)="onNotifyClicked($event)"></dyn-toolbar>
+  <dyn-toolbar (notify)="onNotifyClicked($event)" *ngIf="isLoggedIn"></dyn-toolbar>
 
   <md-sidenav-container fxFill fxFlex>
 
-    <md-sidenav #dynsidebar class="dyn-sidenav" mode="side" >
+    <md-sidenav #dynsidebar class="dyn-sidenav" mode="side" *ngIf="isLoggedIn">
       <div *ngFor="let menuitem of menuitems">
         <button fxLayout="row" md-button [routerLink]="menuitem.link" class="dyn-menu-item">
           <md-icon class="dyn-menu-icon" svgIcon={{menuitem.icon}}></md-icon>
@@ -13,7 +13,7 @@
     </md-sidenav>
 
     <router-outlet>
-      <dyn-breadcrumb></dyn-breadcrumb>
+      <dyn-breadcrumb *ngIf="isLoggedIn"></dyn-breadcrumb>
     </router-outlet>
 
   </md-sidenav-container>

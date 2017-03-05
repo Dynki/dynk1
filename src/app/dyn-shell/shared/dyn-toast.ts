@@ -3,3 +3,4 @@ export interface IToast {
     Msg: string;
     Type: string;
 }
+

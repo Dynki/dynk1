@@ -6,7 +6,8 @@ import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { LoginComponent } from './dyn-login/dyn-login.component';
- 
+import { LoginRoutingModule } from './shared/dyn-auth-routing.module';
+  
 // other imports 
 @NgModule({
   declarations: [
@@ -17,10 +18,12 @@ import { LoginComponent } from './dyn-login/dyn-login.component';
     NgxDatatableModule,
     MaterialModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    LoginRoutingModule
   ],
   exports: [
-    LoginComponent
+    LoginComponent,
+    LoginRoutingModule
   ],
   providers: [],
 })

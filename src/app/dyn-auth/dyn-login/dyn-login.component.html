@@ -1,6 +1,41 @@
-<h2>LOGIN</h2>
-<p>{{message}}</p>
-<p>
-    <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
-    <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
-</p>`
+<div class="dyn-card" fxLayout="column" fxFlex  fxFill class="dyn-background-image">
+  <div fxLayout="row">
+    <div class="dyn-logo-btn" layout="row" layout-align="center center">
+      <img src="assets/img/gb.png" class="dyn-logo"/>
+      Dynki
+    </div>
+    <button md-button class="banner-btns signin-white-btn">Features</button>
+    <button md-button class="banner-btns signin-white-btn">Pricing</button>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+
+    <div fxLayout="column" class="logo-strap">
+      <div class="logo-strap-headline">Keep track of your day</div>
+      <div class="logo-strap-subhead">Anywhere, Anytime</div>
+      <button md-button class="strap-btn">Learn more</button>
+    </div>
+
+    <div fxLayout="column" class="signin-form signin-form-bg">
+      <h1 class="signin-logo">Sign In</h1>
+
+      <md-input-container>
+        <input mdInput [(ngModel)]="email" placeholder="Email"/>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [(ngModel)]="password" placeholder="Password"/>
+      </md-input-container>
+
+      <div fxLayout="row">
+        <button md-button (click)="login()" class="dyn-login-btn">LOG IN</button>
+        <button md-button class="signin-white-btn">FORGOT PASSWORD?</button>
+      </div>
+      <button md-button class="signin-white-btn">NOT A MEMBER - SIGN UP FOR FREE</button>
+      
+    </div>
+  </div>
+  <div class="footer-row" fxLayout="row">
+    <button md-button class="footer-btns signin-white-btn">About</button>
+    <button md-button class="footer-btns signin-white-btn">Terms</button>
+    <button md-button class="footer-btns signin-white-btn">Developed by Dynki Software</button>
+  </div>
+</div>

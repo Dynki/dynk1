@@ -4,7 +4,8 @@ import { AuthService } from '../shared/dyn-auth.service';
 
 @Component({
   selector: 'dyn-login',
-  templateUrl: './dyn-login.component.html'
+  templateUrl: './dyn-login.component.html',
+  styleUrls: ['./dyn-login.component.css'],
 })
 export class LoginComponent {
   message: string;
@@ -16,16 +17,7 @@ export class LoginComponent {
   }
   login() {
     this.message = 'Trying to log in ...';
-    this.authService.login().subscribe(() => {
-      this.setMessage();
-      if (this.authService.isLoggedIn) {
-        // Get the redirect URL from our auth service
-        // If no redirect has been set, use the default
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/crisis-center/admin';
-        // Redirect the user
-        this.router.navigate([redirect]);
-      }
-    });
+    this.authService.login();
   }
   logout() {
     this.authService.logout();
