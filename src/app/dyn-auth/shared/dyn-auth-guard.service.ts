@@ -1,4 +1,6 @@
 import { Injectable }       from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 import { CanActivate, 
   CanLoad,
   Router, 
@@ -11,32 +13,26 @@ import { CanActivate,
 import { AuthService } from './dyn-auth.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate, CanLoad {
+export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let url: string = state.url;
+  canActivate(): Observable<boolean> | boolean {
+    // here check if this is first time call. If not return 
+    // simple boolean based on user object from authService
+    // otherwise:
 
-    return this.checkLogin(url);  
-  }
-  
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.canActivate(route, state);
-  }
+    return this.authService.getAuthenticated().map(user => {
+          if (!user) {
+            this.router.navigate(['/login']);
+          }
 
-  canLoad(route: Route): boolean {
-    let url = `/${route.path}`;
-
-    return this.checkLogin(url);
+          return user ? true : false;
+    })
   }
 
-  checkLogin(url: string): boolean {
-    if (this.authService.isLoggedIn) { return true; }
-    // Store the attempted URL for redirecting
-    this.authService.redirectUrl = url;
-    // Navigate to the login page
-    this.router.navigate(['/login']);
-    return false;
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
+    return this.canActivate();
   }
+
 }

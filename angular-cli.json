@@ -1,7 +1,7 @@
 {
   "project": {
     "version": "1.0.0-beta.26",
-    "name": "gimly"
+    "name": "Dynk1"
   },
   "apps": [
     {
@@ -19,7 +19,7 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "styles.scss"
       ],
       "scripts": [],
       "environments": {
@@ -40,7 +40,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "inline": {
       "style": false,

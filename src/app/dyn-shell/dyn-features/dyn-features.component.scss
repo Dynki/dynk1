@@ -1,0 +1,93 @@
+.dyn-features-image {
+  background: url(/assets/img/features.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+.btn-selected {
+  color: #205081!important;
+}
+
+.features {
+
+    .feature {
+        width: 200px;
+
+        .feature-title{
+            color: #ffffff; 
+            margin: 10px;
+        }
+
+        .signup-btn{
+            background-color: rgba(255, 255, 255, 0.42);
+            color: #fff;
+            margin: 10px;
+        }
+    }
+
+    .feature-basic{
+        @extend .feature;
+        background-color: #205081;
+    }
+
+    .feature-plus{
+        @extend .feature;
+        background-color: #f44336;
+    }
+
+    .feature-pro{
+        @extend .feature;
+        background-color: #179117;
+    }
+}
+
+.feature-matrix{
+
+    tr {
+        color: rgba(255, 255, 255, 0.54);
+        height: 30px;
+        
+        td{
+            border-bottom: solid;
+            border-color: rgba(255, 255, 255, 0.16);
+            border-width: 1px;
+            width: 200px;
+            height: 30px;
+        }
+
+        .center-text{
+            text-align: center;
+        }
+    }
+}
+
+.checkmark {
+    display:inline-block;
+    width: 22px;
+    height:22px;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+    transform: rotate(45deg);
+}
+
+.checkmark_circle {
+    position: absolute;
+    width:22px;
+    height:22px;
+    background-color: green;
+    border-radius:11px;
+    left:0;
+    top:0;
+}
+
+
+.feature-heading{
+  color: #e3f2f4;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 34px;
+  font-weight:bolder;
+  margin-bottom: 30px;
+}

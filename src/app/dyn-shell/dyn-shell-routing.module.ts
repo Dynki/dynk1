@@ -4,14 +4,20 @@ import { RouterModule, Routes }   from '@angular/router';
 import { AuthGuard } from '../dyn-auth/shared/dyn-auth-guard.service';
 import { AuthService} from '../dyn-auth/shared/dyn-auth.service';
 
-import { ShellComponent } from './dyn-shell.component';
+import { HomeComponent } from './dyn-home/dyn-home.component';
+import { FeaturesComponent } from './dyn-features/dyn-features.component';
  
 const appRoutes: Routes = [
   { path: '', 
-    component: ShellComponent, 
-    data: { breadcrumb: "customers", parents: [] },
+    component: HomeComponent, 
+    data: { breadcrumb: "home", parents: [] },
     canActivate: [AuthGuard]
+  },
+  { path: 'features', 
+    component: FeaturesComponent, 
+    data: { breadcrumb: "features", parents: [] }
   }
+
 ];
 
 // other imports 

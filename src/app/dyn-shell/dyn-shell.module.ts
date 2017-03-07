@@ -12,6 +12,8 @@ import 'hammerjs';
 
 import { ToolbarComponent } from './dyn-toolbar/dyn-toolbar.component';
 import { BreadcrumbComponent } from './dyn-breadcrumb/dyn-breadcrumb.component';
+import { HomeComponent } from './dyn-home/dyn-home.component';
+import { FeaturesComponent } from './dyn-features/dyn-features.component';
 import { ShellRoutingModule } from './dyn-shell-routing.module';
 import { DynToastService } from './shared/dyn-toast.service';
 import { CustomerModule } from '../dyn-customers/dyn-customer.module';
@@ -22,6 +24,8 @@ import { AuthModule } from '../dyn-auth/dyn-auth.module';
   declarations: [
     ToolbarComponent,
     BreadcrumbComponent,
+    HomeComponent,
+    FeaturesComponent
   ],
   imports: [
     MaterialModule.forRoot(),
@@ -35,6 +39,8 @@ import { AuthModule } from '../dyn-auth/dyn-auth.module';
   exports: [
     ToolbarComponent,
     BreadcrumbComponent,
+    HomeComponent,
+    FeaturesComponent,
     MaterialModule,
     ToastyModule,
     CustomerModule,

@@ -1,0 +1,46 @@
+<div class="dyn-card" fxLayout="column" fxFlex  fxFill class="dyn-features-image">
+  <div fxLayout="row">
+    <a class="dyn-logo-btn dyn-pattern" layout="row" layout-align="center center" (click)="goHome()">
+      <img src="assets/img/gb.png" class="dyn-logo"/>
+      Dynki
+    </a>
+    <button md-button class="banner-btns signin-white-btn btn-selected">Features</button>
+    <button md-button (click)="pricing()" class="banner-btns signin-white-btn">Pricing</button>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+    <md-card fxLayout="column" class="signin-form signin-form-bg dynki-dark-theme">
+      <div class="feature-heading">Check out the features</div>
+      <div fxLayout="row" class="features">
+        <div fxLayout="column" fxFlex>
+        </div>
+        <div fxLayout="column" class="feature-basic dyn-pattern" fxFlex fxLayoutAlign="center center">
+          <div class="feature-title">BASIC</div>
+          <button md-button (click)="signup()" class="signup-btn">SIGN UP</button>
+        </div>
+        <div fxLayout="column" class="feature-plus" fxFlex fxLayoutAlign="center center">
+          <div class="feature-title">PLUS</div>
+          <button md-button (click)="signup()" class="signup-btn">COMING SOON</button>
+        </div>
+        <div fxLayout="column" class="feature-pro" fxFlex fxLayoutAlign="center center">
+          <div class="feature-title">PRO</div>
+          <button md-button (click)="signup()" class="signup-btn">COMING SOON</button>
+        </div>
+      </div>
+      <div fxLayout="row" class="features">
+        <table class="feature-matrix">
+          <tr *ngFor="let feature of features">
+            <td>{{feature.title}}</td>
+            <td class="center-text">Yes</td>
+            <td class="center-text">Yes</td>
+            <td class="center-text">Yes</td>
+          </tr>
+        </table>
+      </div>
+    </md-card>
+  </div>
+  <div class="footer-row" fxLayout="row">
+    <button md-button (click)="about()" class="footer-btns signin-white-btn">About</button>
+    <button md-button (click)="terms()" class="footer-btns signin-white-btn">Terms</button>
+    <button md-button class="footer-btns signin-white-btn">Developed by Dynki Software</button>
+  </div>
+</div>

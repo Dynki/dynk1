@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import * as firebase from 'firebase';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -25,6 +26,8 @@ export const firebaseAuthConfig = {
   provider: AuthProviders.Password,
   method: AuthMethods.Password
 };
+
+firebase.initializeApp(firebaseConfig);
 
 // other imports 
 @NgModule({

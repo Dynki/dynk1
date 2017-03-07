@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["firebase"],
     "baseUrl": "",
     "declaration": false,
     "emitDecoratorMetadata": true,

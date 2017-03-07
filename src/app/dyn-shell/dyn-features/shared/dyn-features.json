@@ -1,0 +1,8 @@
+{
+    "data": [
+        { "title": "Time Tracking", "packages": ["basic","plus","pro"], "available": true },
+        { "title": "Client Tags", "packages": ["basic","plus","pro"], "available": true },
+        { "title": "Project Tags", "packages": ["basic","plus","pro"], "available": true },
+        { "title": "Delete Time Entries", "packages": ["basic","plus","pro"], "available": true }        
+    ]
+}
