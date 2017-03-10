@@ -25,15 +25,16 @@ export class AuthService {
         this.isLoggedIn = false;
       } else {
         this.isLoggedIn = true;
+        this.router.navigate(['/']);
       }
     });
+
   }
 
   login(username: string, password: string) {
     this.af.auth.login({ email: username, password: password })
     .then(() => { 
       this.toastService.showToast({ Title: 'Authentication', Msg: 'Logged In', Type: 'success' })
-      this.router.navigate(['/']);
     })
     .catch((e) => this.toastService.showToast({ Title: 'Authentication', Msg: e.message, Type: 'error' }))
   }
@@ -74,6 +75,14 @@ export class AuthService {
   forgotPassword(email: string) :void {
     firebase.auth().sendPasswordResetEmail(email)
     .then(() => this.toastService.showToast({ Title: 'Authentication', Msg: 'Email Sent to ' + email, Type: 'success' }))
+    .catch((e) => this.toastService.showToast({ Title: 'Authentication', Msg: e.message, Type: 'error' }))
+  }
+
+  socialSignIn(socialProvider: string){
+    this.af.auth.login({ provider: AuthProviders[socialProvider], method: AuthMethods.Popup })
+    .then(() => { 
+      this.toastService.showToast({ Title: 'Authentication', Msg: 'Logged In', Type: 'success' })
+    })
     .catch((e) => this.toastService.showToast({ Title: 'Authentication', Msg: e.message, Type: 'error' }))
   }
 

@@ -31,4 +31,14 @@ export class LoginComponent {
   features(){
     this.router.navigate(['/features']);
   }
+
+  googleSignIn(){
+    this.authService.socialSignIn('Google');
+  }
+  facebookSignIn(){
+    this.authService.socialSignIn('Facebook');
+  }
+  twitterSignIn(){
+    this.authService.socialSignIn('Twitter');
+  }
 }

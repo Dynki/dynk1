@@ -13,7 +13,7 @@ const MENUITEMS: MenuItem[] = [
 @Component({
   selector: 'shell',
   templateUrl: './dyn-shell.component.html',
-  styleUrls: ['./dyn-shell.component.css'],
+  styleUrls: ['./dyn-shell.component.scss'],
 })
 
 export class ShellComponent {
@@ -28,6 +28,7 @@ export class ShellComponent {
     iconRegistry.addSvgIcon('save', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/save.svg'));
     iconRegistry.addSvgIcon('facebook', sanitizer.bypassSecurityTrustResourceUrl('assets/img/facebook-box.svg'));
     iconRegistry.addSvgIcon('twitter', sanitizer.bypassSecurityTrustResourceUrl('assets/img/twitter.svg'));
+    iconRegistry.addSvgIcon('google', sanitizer.bypassSecurityTrustResourceUrl('assets/img/google.svg'));
 
     auth.getAuthenticated().subscribe(e => this.isLoggedIn = e);
 

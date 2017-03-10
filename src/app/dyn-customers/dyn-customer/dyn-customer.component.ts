@@ -23,7 +23,7 @@ export class CustomerComponent {
 
   constructor (
     private router: Router, 
-    private customerService: CustomerService,
+    private customerService: CustomerService
   ) { 
 
   }
@@ -41,5 +41,8 @@ export class CustomerComponent {
 
   onActivate(event) {
     this.router.navigate(['/customers', event.row['_id']]);
+  }
+
+  addCustomer() {
   }
 }

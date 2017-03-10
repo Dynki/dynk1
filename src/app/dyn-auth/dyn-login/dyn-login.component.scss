@@ -2,7 +2,13 @@
     height: 44px;
 }
 
+.social-btn{
+    width: 94px;
+}
+
 .facebook-btn{
+    @extend .social-btn;
+
     background-color: #3b5998;
     height: 44px;
     color: #fff;
@@ -10,7 +16,18 @@
 }
 
 .twitter-btn{
+    @extend .social-btn;
+
     background-color: #48aae6;
+    height: 44px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.google-btn{
+    @extend .social-btn;
+
+    background-color: #dd4b38;
     height: 44px;
     color: #fff;
     margin-bottom: 10px;
@@ -23,10 +40,15 @@
 }
 
 .social-btns{
-    margin-top: 30px;
+    margin-top: 5px;
     margin-bottom: 2px;
 }
 
 .login-btns{
     margin-top: 10px;
+}
+
+.orsignin{
+    margin: 20px;
+    color: #ffffff;
 }

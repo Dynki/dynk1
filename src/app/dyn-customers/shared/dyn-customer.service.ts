@@ -1,3 +1,4 @@
+import * as firebase from 'firebase';
 import { Injectable }              from '@angular/core';
 import { Http, Response }          from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
@@ -7,6 +8,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/toPromise';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 import { Customer } from './dyn-customer.model';
 import { DynToastService } from '../../dyn-shell/shared/dyn-toast.service';
@@ -14,13 +16,20 @@ import { DynToastService } from '../../dyn-shell/shared/dyn-toast.service';
 @Injectable()
 export class CustomerService {
   private customersUrl = 'http://172.17.8.101/api/clients';  // URL to web API
+  private logs: FirebaseListObservable<any>;
+  private database = firebase.database();
+
   
   constructor (
     private http: Http,
-    private toastService: DynToastService
-  ) {}
+    private toastService: DynToastService,
+    private af: AngularFire
+  ) {  
+    this.logs = af.database.list('/logs');
+  }
   
   getCustomers (): Observable<Customer[]> {
+
 
     let customer$ = this.http.get(this.customersUrl)
                     .map(this.extractData)

@@ -6,6 +6,31 @@
 @import '~ng2-toasty/bundles/style-material.css';
 
 @import '~@angular/material/core/theming/all-theme';
+@import './pallete';
+
+// Include the base styles for Angular Material core. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+@include mat-core();
+
+// $primary: mat-palette($mat-blue);
+// $accent:  mat-palette($mat-amber);
+// $warn:    mat-palette($mat-deep-orange);
+
+// $dynki-theme: mat-light-theme($primary, $accent, $warn);
+
+// @include angular-material-theme($dynki-theme);
+
+// Plus imports for other components in your app.
+.dynki-dark-theme {
+  $dark-primary: mat-palette($mat-indigo, 50, 50, 50);
+  $dark-accent:  mat-palette($mat-indigo, 50, 50, 50);
+  $dark-warn:    mat-palette($mat-deep-orange);
+
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+  @include angular-material-theme($dark-theme);
+}
+
 
 html, body {
   height: 100%;
@@ -55,21 +80,6 @@ html, body {
   background-size: cover;
 }
 
-// Plus imports for other components in your app.
-
-// Include the base styles for Angular Material core. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-@include mat-core();
-
-.dynki-dark-theme {
-  $dark-primary: mat-palette($mat-indigo, 50, 50, 50);
-  $dark-accent:  mat-palette($mat-indigo, 50, 50, 50);
-  $dark-warn:    mat-palette($mat-deep-orange);
-
-  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
-
-  @include angular-material-theme($dark-theme);
-}
 
 
 .mat-input-element {

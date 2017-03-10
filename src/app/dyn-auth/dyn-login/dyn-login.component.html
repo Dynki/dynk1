@@ -31,15 +31,19 @@
         <button md-button (click)="login()" class="dyn-login-btn signin-btn">LOG IN</button>
         <button md-button (click)="forgotPassword()" class="signin-white-btn signin-btn">FORGOT PASSWORD?</button>
       </div>
-      <div fxLayout="column" fxLayoutAlign="center" class="social-btns">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <span class="orsignin">Or Sign in With</span>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center" class="social-btns">
         <!--<md-checkbox class="example-margin" [(ngModel)]="termsAgreed">Agree Terms of Service</md-checkbox>-->
-        <button md-button class="facebook-btn">
-          <md-icon class="facebook-icon" svgIcon="facebook"></md-icon>
-          SIGN IN WITH FACEBOOK
+        <button (click)="googleSignIn('Google')" md-button class="google-btn">
+          <md-icon class="google-icon" svgIcon="google"></md-icon>
         </button>
-        <button md-button class="twitter-btn">
+        <button (click)="facebookSignIn('Facebook')" md-button class="facebook-btn">
+          <md-icon class="facebook-icon" svgIcon="facebook"></md-icon>
+        </button>
+        <button (click)="twitterSignIn('Twitter')" md-button class="twitter-btn">
           <md-icon class="facebook-icon" svgIcon="twitter"></md-icon>
-          SIGN IN WITH TWITTER
         </button>
       </div>
       <button md-button (click)="signUp()" class="signin-white-btn signin-btn">
