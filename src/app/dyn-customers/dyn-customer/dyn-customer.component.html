@@ -8,8 +8,10 @@
     [rows]="customers"
     [columns]="columns"
     [limit]="10"
-    (activate)="onActivate($event)"
+    [loadingIndicator]="loadingIndicator"
+    [selectionType]="'single'"
+    (select)='onSelect($event)'>
     >
   </ngx-datatable>
-  <a md-fab class="dyn-btn-bottom-right"><md-icon>add</md-icon></a>
+  <a md-fab (click)="addCustomer()" class="dyn-btn-bottom-right"><md-icon>add</md-icon></a>
 </div>

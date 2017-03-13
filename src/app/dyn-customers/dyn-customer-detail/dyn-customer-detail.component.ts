@@ -23,6 +23,7 @@ export class CustomerDetailComponent {
   ) {}
   
   ngOnInit() {
+    
     this.route.params
       .switchMap((params: Params) => this.service.getCustomer(params['id']))
       .subscribe((customer: Customer) => { 
@@ -31,16 +32,21 @@ export class CustomerDetailComponent {
   }
 
   onUpdate() {
-    this.service.updateCustomer(this.customer).subscribe(
-       data => {
-         // refresh the list
-         return true;
-       },
-       error => {
-         console.error("Error saving client!");
-         console.log(error);
-         return false;
-       }
-    );
+    // this.service.updateCustomer(this.customer).subscribe(
+    //    data => {
+    //      // refresh the list
+    //      return true;
+    //    },
+    //    error => {
+    //      console.error("Error saving client!");
+    //      console.log(error);
+    //      return false;
+    //    }
+    // );
   }
+
+  saveCustomer(){
+    this.service.saveCustomer(this.customer);
+    this.router.navigate(['/customers']);
+ }
 }

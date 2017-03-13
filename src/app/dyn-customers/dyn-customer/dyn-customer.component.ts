@@ -15,7 +15,8 @@ import { CustomerService } from '../shared/dyn-customer.service';
 
 export class CustomerComponent {
   errorMessage: string;
-  customers: Customer[];
+  customers: Observable<any>;
+  loadingIndicator: Boolean = true;
 
   columns = [
     { name: 'name' }
@@ -34,15 +35,18 @@ export class CustomerComponent {
 
   getCustomers() {
     this.customerService.getCustomers()
-                     .subscribe(
-                       customers => this.customers = customers,
-                       error =>  this.errorMessage = <any>error);
+      .subscribe(
+        (customers) => {
+          this.customers = customers,
+          this.loadingIndicator = false},
+        error =>  this.errorMessage = <any>error);
   }
 
-  onActivate(event) {
-    this.router.navigate(['/customers', event.row['_id']]);
+  onSelect(event) {
+    this.router.navigate(['/customers', event.selected[0]['$key']]);
   }
 
   addCustomer() {
+    this.router.navigate(['/customers', "new"]);
   }
 }
