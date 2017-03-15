@@ -1,4 +1,11 @@
-# Dynk1
+# Dynk1 - Angular2 Starter Application
+
+<p align="center">
+  <img width="200" alt="Angular 2 " src="https://angular.io/resources/images/logos/angular2/angular.svg">
+  <img width="200" alt="Plus" src="https://www.insidehighered.com/sites/default/server_files/styles/large/public/media/plus.png?itok=JqOdLrmD">
+  <img width="200" alt="Firebase" src="https://firebase.google.com/_static/images/firebase/touchicon-180.png">
+</p> 
+
 
 A Starter application using Angular2 Material with Firebase Integration for the back end.
 
