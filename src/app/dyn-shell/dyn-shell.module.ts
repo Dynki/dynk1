@@ -16,6 +16,8 @@ import { HomeComponent } from './dyn-home/dyn-home.component';
 import { FeaturesComponent } from './dyn-features/dyn-features.component';
 import { ShellRoutingModule } from './dyn-shell-routing.module';
 import { DynToastService } from './shared/dyn-toast.service';
+import { DynDialogService } from './dyn-confirm/dyn-confirm.service';
+import { ConfirmationComponent } from './dyn-confirm/dyn-confirm.component';
 import { CustomerModule } from '../dyn-customers/dyn-customer.module';
 import { AuthModule } from '../dyn-auth/dyn-auth.module';
 
@@ -25,7 +27,8 @@ import { AuthModule } from '../dyn-auth/dyn-auth.module';
     ToolbarComponent,
     BreadcrumbComponent,
     HomeComponent,
-    FeaturesComponent
+    FeaturesComponent,
+    ConfirmationComponent
   ],
   imports: [
     MaterialModule.forRoot(),
@@ -49,8 +52,10 @@ import { AuthModule } from '../dyn-auth/dyn-auth.module';
   providers: [
     ToastyService,
     ToastyConfig,
-    DynToastService
+    DynToastService,
+    DynDialogService
   ],
+  entryComponents: [ConfirmationComponent]
 })
 export class ShellModule { 
 }

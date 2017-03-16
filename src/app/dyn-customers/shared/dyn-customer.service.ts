@@ -40,13 +40,20 @@ export class CustomerService {
 
     if (customer.$key === 'new') {
       this.customerRef.push({ 'name': customer.name })
-      .then(() => this.toastService.showToast({ Title: 'Save Customer', Msg: 'Customer Added', Type: 'success' }))
-      .catch((e) => this.toastService.showToast({ Title: 'Save Customer', Msg: e.message, Type: 'error' }))
+        .then(() => this.toastService.showToast({ Title: 'Save Customer', Msg: 'Customer Added', Type: 'success' }))
+        .catch((e) => this.toastService.showToast({ Title: 'Save Customer', Msg: e.message, Type: 'error' }))
     } else {
       let item = this.af.database.object('/customers/'+customer.$key);
       item.update(customer)
-      .then(() => this.toastService.showToast({ Title: 'Save Customer', Msg: 'Customer Updated', Type: 'success' }))
-      .catch((e) => this.toastService.showToast({ Title: 'Save Customer', Msg: e.message, Type: 'error' }))
+        .then(() => this.toastService.showToast({ Title: 'Save Customer', Msg: 'Customer Updated', Type: 'success' }))
+        .catch((e) => this.toastService.showToast({ Title: 'Save Customer', Msg: e.message, Type: 'error' }))
     }
+  }
+
+  deleteCustomer(customer: any){
+    let item = this.af.database.object('/customers/'+customer.$key);
+    item.remove()
+      .then(() => this.toastService.showToast({ Title: 'Delete Customer', Msg: 'Customer Deleted', Type: 'success' }))
+      .catch((e) => this.toastService.showToast({ Title: 'Delete Customer', Msg: e.message, Type: 'error' }))
   }
 }

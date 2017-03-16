@@ -5,21 +5,24 @@ import 'rxjs/add/operator/switchMap';
 
 import { Customer } from '../shared/dyn-customer.model';
 import { CustomerService } from '../shared/dyn-customer.service'
+import { DynDialogService } from '../../dyn-shell/dyn-confirm/dyn-confirm.service';
 
 @Component({
   selector: 'dyn-customer-detail',
   templateUrl: './dyn-customer-detail.component.html',
-  providers: [CustomerService]
+  providers: [CustomerService, DynDialogService]
 })
 export class CustomerDetailComponent {
 
   customer: Customer;
   customerId: String;
+  result: any;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: CustomerService
+    private service: CustomerService,
+    public dialogService: DynDialogService
   ) {}
   
   ngOnInit() {
@@ -31,22 +34,18 @@ export class CustomerDetailComponent {
       });
   }
 
-  onUpdate() {
-    // this.service.updateCustomer(this.customer).subscribe(
-    //    data => {
-    //      // refresh the list
-    //      return true;
-    //    },
-    //    error => {
-    //      console.error("Error saving client!");
-    //      console.log(error);
-    //      return false;
-    //    }
-    // );
-  }
-
   saveCustomer(){
     this.service.saveCustomer(this.customer);
     this.router.navigate(['/customers']);
- }
+  }
+
+  deleteCustomer(){
+    this.dialogService.confirm('Confirm Delete', 'Delete this customer, are you sure?') 
+    .subscribe(result => {
+      if (result) {
+        this.service.deleteCustomer(this.customer);
+        this.router.navigate(['/customers']);
+      }
+    });
+  }
 }
