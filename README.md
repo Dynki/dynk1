@@ -6,6 +6,7 @@
   <img width="200" alt="Firebase" src="https://firebase.google.com/_static/images/firebase/touchicon-180.png">
 </p> 
 
+> [Demo](https://dynki-c5141.firebaseapp.com)
 
 A Starter application using Angular2 Material with Firebase Integration for the back end.
 
