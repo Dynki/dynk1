@@ -1,4 +1,4 @@
-# Dynk1 - Angular2 Starter Application
+# Angular2 + Firebase + Material Design - Starter Application
 
 <p align="center">
   <img width="200" alt="Angular 2 " src="https://angular.io/resources/images/logos/angular2/angular.svg">
