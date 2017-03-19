@@ -11,6 +11,7 @@ import { ToastyModule } from 'ng2-toasty';
 import 'hammerjs';
 
 import { ToolbarComponent } from './dyn-toolbar/dyn-toolbar.component';
+import { UserProfileBannerComponent } from './dyn-userprofile-banner/dyn-userprofile-banner.component';
 import { BreadcrumbComponent } from './dyn-breadcrumb/dyn-breadcrumb.component';
 import { HomeComponent } from './dyn-home/dyn-home.component';
 import { FeaturesComponent } from './dyn-features/dyn-features.component';
@@ -20,15 +21,18 @@ import { DynDialogService } from './dyn-confirm/dyn-confirm.service';
 import { ConfirmationComponent } from './dyn-confirm/dyn-confirm.component';
 import { CustomerModule } from '../dyn-customers/dyn-customer.module';
 import { AuthModule } from '../dyn-auth/dyn-auth.module';
+import { TruncatePipe } from './shared/dyn-truncate.pipe';
 
 // other imports 
 @NgModule({
   declarations: [
     ToolbarComponent,
+    UserProfileBannerComponent,    
     BreadcrumbComponent,
     HomeComponent,
     FeaturesComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    TruncatePipe
   ],
   imports: [
     MaterialModule.forRoot(),
@@ -41,13 +45,15 @@ import { AuthModule } from '../dyn-auth/dyn-auth.module';
   ],
   exports: [
     ToolbarComponent,
+    UserProfileBannerComponent,
     BreadcrumbComponent,
     HomeComponent,
     FeaturesComponent,
     MaterialModule,
     ToastyModule,
     CustomerModule,
-    AuthModule
+    AuthModule,
+    TruncatePipe
   ],
   providers: [
     ToastyService,

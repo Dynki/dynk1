@@ -19,7 +19,7 @@ export class CustomerComponent {
   loadingIndicator: Boolean = true;
 
   columns = [
-    { name: 'name' }
+    { name: 'Name' }
   ];
 
   constructor (

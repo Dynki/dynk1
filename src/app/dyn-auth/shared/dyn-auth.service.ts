@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
-import { AngularFire, AngularFireAuth, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFire, AngularFireAuth, AuthProviders, AuthMethods, FirebaseAuthState } from 'angularfire2';
 import { Router} from '@angular/router';
 
 import { DynToastService } from '../../dyn-shell/shared/dyn-toast.service';
@@ -13,6 +13,8 @@ import { DynToastService } from '../../dyn-shell/shared/dyn-toast.service';
 export class AuthService {
   isLoggedIn: boolean;
   firebaseAuth: AngularFireAuth;
+  currentUserName: string;
+  currentUserEmail: string; 
 
   // store the URL so we can redirect after logging in
   redirectUrl: string;
@@ -25,10 +27,16 @@ export class AuthService {
         this.isLoggedIn = false;
       } else {
         this.isLoggedIn = true;
+        this.getUserDetails(auth);
         this.router.navigate(['/']);
       }
     });
+  }
 
+  private getUserDetails(auth: FirebaseAuthState){
+
+    this.currentUserName = auth.google.displayName;
+    this.currentUserEmail = auth.auth.email;
   }
 
   login(username: string, password: string) {
@@ -85,5 +93,6 @@ export class AuthService {
     })
     .catch((e) => this.toastService.showToast({ Title: 'Authentication', Msg: e.message, Type: 'error' }))
   }
+
 
 }
