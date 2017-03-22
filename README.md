@@ -10,6 +10,29 @@
 
 A Starter application using Angular2 Material with Firebase Integration for the back end.
 
+This project is intended to be a starting point for an Angular2/Material Design/Firebase project. Also, as a reference point for anyone who is looking to learn Angular2 and needs an easy start project to get them going.
+
+## Quick Start
+
+Make sure you have Node version >= 5.0 and NPM >= 3
+
+Clone/Download the repo 
+# clone our repo
+# --depth 1 removes all but one .git commit history
+git clone --depth 1 https://github.com/Dynki/dynk1.git
+
+# change directory to our repo
+cd dynk1
+
+# install angular-cli
+npm install -g @angular/cli
+
+# install the repo with npm
+npm install
+
+# start the server
+ng serve
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26.
 
 ## Development server
