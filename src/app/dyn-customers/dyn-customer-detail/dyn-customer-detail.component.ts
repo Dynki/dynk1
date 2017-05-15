@@ -30,7 +30,7 @@ export class CustomerDetailComponent {
     this.route.params
       .switchMap((params: Params) => this.service.getCustomer(params['id']))
       .subscribe((customer: Customer) => { 
-        this.customer = customer 
+        this.customer = customer[0]
       });
   }
 

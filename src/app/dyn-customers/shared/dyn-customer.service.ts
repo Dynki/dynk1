@@ -6,7 +6,9 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/toPromise';
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable, FirebaseObjectFactory } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 
 import { Customer } from './dyn-customer.model';
 import { DynToastService } from '../../dyn-shell/shared/dyn-toast.service';
@@ -19,9 +21,9 @@ export class CustomerService {
 
   constructor (
     private toastService: DynToastService,
-    private af: AngularFire
+    private db: AngularFireDatabase
   ) {  
-    this.customersList = af.database.list('/customers');
+    this.customersList = db.list('/customers');
 
     this.customersList.subscribe(data => { 
       this.customers = data
@@ -32,8 +34,13 @@ export class CustomerService {
     return this.customersList;
   }
 
-  getCustomer(id: string): FirebaseObjectObservable<any> {
-    return this.af.database.object('/customers/'+id);
+  getCustomer(id: string): FirebaseListObservable<any> {
+    return this.db.list('/customers/', {
+      query: { 
+        orderByKey: true,
+        equalTo: id
+      }
+    });
   } 
 
   saveCustomer (customer: any) {
@@ -43,15 +50,27 @@ export class CustomerService {
         .then(() => this.toastService.showToast({ Title: 'Save Customer', Msg: 'Customer Added', Type: 'success' }))
         .catch((e) => this.toastService.showToast({ Title: 'Save Customer', Msg: e.message, Type: 'error' }))
     } else {
-      let item = this.af.database.object('/customers/'+customer.$key);
-      item.update(customer)
+      let item = this.db.list('/customers/', {
+        query: { 
+          orderByKey: true,
+          equalTo: customer.$key
+        }
+      });
+
+      item.update(customer.$key, customer)
         .then(() => this.toastService.showToast({ Title: 'Save Customer', Msg: 'Customer Updated', Type: 'success' }))
         .catch((e) => this.toastService.showToast({ Title: 'Save Customer', Msg: e.message, Type: 'error' }))
     }
   }
 
   deleteCustomer(customer: any){
-    let item = this.af.database.object('/customers/'+customer.$key);
+    let item = this.db.list('/customers/', {
+      query: { 
+        orderByKey: true,
+        equalTo: customer.$key
+      }
+    });
+
     item.remove()
       .then(() => this.toastService.showToast({ Title: 'Delete Customer', Msg: 'Customer Deleted', Type: 'success' }))
       .catch((e) => this.toastService.showToast({ Title: 'Delete Customer', Msg: e.message, Type: 'error' }))

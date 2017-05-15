@@ -4,7 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
-import { AngularFire, AngularFireAuth, AuthProviders, AuthMethods, FirebaseAuthState } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { Router} from '@angular/router';
 
 import { DynToastService } from '../../dyn-shell/shared/dyn-toast.service';
@@ -19,10 +21,8 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  constructor(public af: AngularFire, public toastService: DynToastService, private router: Router) {
-    this.firebaseAuth = af.auth;
-
-    this.af.auth.subscribe(auth => {
+  constructor(public afAuth: AngularFireAuth, public toastService: DynToastService, private router: Router) {
+    this.afAuth.authState.subscribe(auth => {
       if (auth === undefined || auth === null){
         this.isLoggedIn = false;
       } else {
@@ -33,14 +33,13 @@ export class AuthService {
     });
   }
 
-  private getUserDetails(auth: FirebaseAuthState){
-
-    this.currentUserName = auth.google.displayName;
-    this.currentUserEmail = auth.auth.email;
+  private getUserDetails(auth: firebase.User){
+    this.currentUserName = auth.displayName ? auth.displayName : auth.email;
+    this.currentUserEmail = auth.email;
   }
 
   login(username: string, password: string) {
-    this.af.auth.login({ email: username, password: password })
+    this.afAuth.auth.signInWithEmailAndPassword(username, password )
     .then(() => { 
       this.toastService.showToast({ Title: 'Authentication', Msg: 'Logged In', Type: 'success' })
     })
@@ -48,12 +47,12 @@ export class AuthService {
   }
 
   logout(): void {
-    this.af.auth.logout()
+    this.afAuth.auth.signOut()
     .then(() => {
       this.toastService.showToast({ Title: 'Authentication', Msg: 'Logged Out', Type: 'success' })
       this.router.navigate(['/login']);
     })
-    .catch((e) => this.toastService.showToast({ Title: 'Authentication', Msg: e, Type: 'error' }))
+    .catch((e) => this.toastService.showToast({ Title: 'Authentication', Msg: e.message, Type: 'error' }))
   }
 
   signUp(username: string, password: string, termsAgreed: boolean): void {
@@ -73,12 +72,12 @@ export class AuthService {
       return;
     }
      
-    this.af.auth.createUser({ email: username, password: password })
+    this.afAuth.auth.createUserWithEmailAndPassword(username, password)
     .then(() => this.toastService.showToast({ Title: 'Authentication', Msg: 'User created', Type: 'success' }))
     .catch((e) => this.toastService.showToast({ Title: 'Authentication', Msg: e.message, Type: 'error' }))
   }
 
-  getAuthenticated(): Observable<any> { return this.af.auth; }
+  getAuthenticated(): Observable<any> { return this.afAuth.authState; }
 
   forgotPassword(email: string) :void {
     firebase.auth().sendPasswordResetEmail(email)
@@ -86,8 +85,26 @@ export class AuthService {
     .catch((e) => this.toastService.showToast({ Title: 'Authentication', Msg: e.message, Type: 'error' }))
   }
 
-  socialSignIn(socialProvider: string){
-    this.af.auth.login({ provider: AuthProviders[socialProvider], method: AuthMethods.Popup })
+  socialSignIn(socialProviderDesc: string){
+
+    let socialProvider;
+
+    switch (socialProviderDesc) {
+      case 'Facebook':
+        socialProvider = new firebase.auth.FacebookAuthProvider()
+        break;
+      case 'Google':
+        socialProvider = new firebase.auth.GoogleAuthProvider()
+        break;
+      case 'Twitter':
+        socialProvider = new firebase.auth.TwitterAuthProvider()
+        break;
+      default:
+        socialProvider = new firebase.auth.EmailAuthProvider()
+        break;
+    }
+
+    this.afAuth.auth.signInWithPopup(socialProvider)
     .then(() => { 
       this.toastService.showToast({ Title: 'Authentication', Msg: 'Logged In', Type: 'success' })
     })

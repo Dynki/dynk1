@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
 @import '~ng2-toasty/bundles/style-material.css';
 
-@import '~@angular/material/core/theming/all-theme';
+@import '~@angular/material/theming';
+@import '~@angular/material/prebuilt-themes/indigo-pink';
 @import './pallete';
 
 // Include the base styles for Angular Material core. We include this here so that you only

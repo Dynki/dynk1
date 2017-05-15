@@ -35,7 +35,7 @@ import { TruncatePipe } from './shared/dyn-truncate.pipe';
     TruncatePipe
   ],
   imports: [
-    MaterialModule.forRoot(),
+    MaterialModule,
     ToastyModule.forRoot(),
     BrowserModule,
     FormsModule,

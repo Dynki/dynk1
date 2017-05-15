@@ -1,10 +1,13 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import 'hammerjs';
 
@@ -22,11 +25,6 @@ export const firebaseConfig = {
   messagingSenderId: "957203868799"
 };
 
-export const firebaseAuthConfig = {
-  provider: AuthProviders.Password,
-  method: AuthMethods.Password
-};
-
 firebase.initializeApp(firebaseConfig);
 
 // other imports 
@@ -36,13 +34,14 @@ firebase.initializeApp(firebaseConfig);
     ShellComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
-    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
+    AngularFireModule.initializeApp(firebaseConfig),
     HttpModule,
     ShellModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [AngularFireAuth, AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
