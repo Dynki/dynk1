@@ -82,6 +82,7 @@ html, body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  height: 100%!important;
 }
 
 
@@ -130,14 +131,13 @@ html, body {
 
 .strap-btn{
   width: 165px;
-  border: solid;
-  border-color: #e3f2f4;
-  font-size: 24px;
+  border: solid!important;
+  border-color: #e3f2f4!important;
+  font-size: 24px!important;
   color: rgb(227, 242, 244)!important;
-  margin-left: 0px
-  ;
-  margin-top: 20px;
-  padding: 10px;
+  margin-left: 0px!important;
+  margin-top: 20px!important;
+  padding: 10px!important;
 }
 
 .strap-btn:hover{

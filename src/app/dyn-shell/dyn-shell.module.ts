@@ -10,6 +10,7 @@ import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty
 import { ToastyModule } from 'ng2-toasty';
 import 'hammerjs';
 
+import { ShellComponent } from './dyn-shell.component';
 import { ToolbarComponent } from './dyn-toolbar/dyn-toolbar.component';
 import { UserProfileBannerComponent } from './dyn-userprofile-banner/dyn-userprofile-banner.component';
 import { BreadcrumbComponent } from './dyn-breadcrumb/dyn-breadcrumb.component';
@@ -32,7 +33,8 @@ import { TruncatePipe } from './shared/dyn-truncate.pipe';
     HomeComponent,
     FeaturesComponent,
     ConfirmationComponent,
-    TruncatePipe
+    TruncatePipe,
+    ShellComponent
   ],
   imports: [
     MaterialModule,
@@ -53,7 +55,8 @@ import { TruncatePipe } from './shared/dyn-truncate.pipe';
     ToastyModule,
     CustomerModule,
     AuthModule,
-    TruncatePipe
+    TruncatePipe,
+    ShellComponent
   ],
   providers: [
     ToastyService,

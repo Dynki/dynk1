@@ -2,13 +2,19 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { ShellModule } from './dyn-shell/dyn-shell.module';
+import { APP_BASE_HREF } from '@angular/common';
 
 describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [ ShellModule ],
       declarations: [
         AppComponent
       ],
+      providers: [
+      { provide: APP_BASE_HREF, useValue: '/' },
+      ]
     });
     TestBed.compileComponents();
   });

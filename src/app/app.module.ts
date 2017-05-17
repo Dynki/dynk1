@@ -12,7 +12,6 @@ import * as firebase from 'firebase';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { ShellComponent } from './dyn-shell/dyn-shell.component';
 import { ShellModule } from './dyn-shell/dyn-shell.module';
 
 
@@ -30,8 +29,7 @@ firebase.initializeApp(firebaseConfig);
 // other imports 
 @NgModule({
   declarations: [
-    AppComponent,
-    ShellComponent
+    AppComponent
   ],
   imports: [
     BrowserAnimationsModule,
