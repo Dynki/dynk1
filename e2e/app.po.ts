@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class GimlyPage {
+export class DynkiPage {
   navigateTo() {
     return browser.get('/');
   }

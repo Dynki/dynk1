@@ -1,10 +1,10 @@
-import { GimlyPage } from './app.po';
+import { DynkiPage } from './app.po';
 
 describe('gimly App', function() {
-  let page: GimlyPage;
+  let page: DynkiPage;
 
   beforeEach(() => {
-    page = new GimlyPage();
+    page = new DynkiPage();
   });
 
   it('should display message saying app works', () => {

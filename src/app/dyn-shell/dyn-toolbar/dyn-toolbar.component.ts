@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
-import {MdIconRegistry} from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MdIconRegistry } from '@angular/material';
 import { AuthService } from '../../dyn-auth/shared/dyn-auth.service';
 
 @Component({
