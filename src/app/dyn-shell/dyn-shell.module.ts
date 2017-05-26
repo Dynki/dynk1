@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';  
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -43,7 +44,8 @@ import { TruncatePipe } from './shared/dyn-truncate.pipe';
     FormsModule,
     HttpModule,
     FlexLayoutModule,
-    ShellRoutingModule
+    ShellRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     ToolbarComponent,

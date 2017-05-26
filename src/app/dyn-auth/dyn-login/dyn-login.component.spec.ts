@@ -1,56 +1,66 @@
-// /* tslint:disable:no-unused-variable */
+/* tslint:disable:no-unused-variable */
 
-// import { TestBed, async } from '@angular/core/testing';
-// import { LoginComponent } from './dyn-login.component';
-// import { APP_BASE_HREF } from '@angular/common';
-// import { AuthService } from '../shared/dyn-auth.service';
+import { TestBed, async, ComponentFixture, inject } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core'
+import { DebugElement } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
-// class AuthServiceMock {
-//     isLoggedIn: Boolean;
+import { LoginComponent } from './dyn-login.component';
+import { AuthService } from '../shared/dyn-auth.service';
 
-//     constructor(){
-//         this.isLoggedIn = false;
-//     }
+class AuthServiceMock {
+  isLoggedIn: Boolean;
 
-//     public login(){
-//         this.isLoggedIn = true;
-//     }
+  constructor() {
+    this.isLoggedIn = false;
+  }
 
-//     public logout(){
-//         this.isLoggedIn = false;
-//     }
-// }
+  public login() {
+    this.isLoggedIn = true;
+  }
 
-// describe('AppComponent', () => {
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [
-//         LoginComponent
-//       ],
-//       providers: [
-//       { provide: APP_BASE_HREF, useValue: '/' },
-//       { provide: AuthService, useClass: AuthServiceMock },
-//       ]
-//     });
-//     TestBed.compileComponents();
-//   });
+  public logout() {
+    this.isLoggedIn = false;
+  }
+}
 
-//   it('should log in the user', async(() => {
-//     const fixture = new ;
-//     const app = fixture.debugElement.componentInstance;
-//     expect(app).toBeTruthy();
-//   }));
+describe('LoginComponent', () => {
 
-//   it(`should have as title 'app works!'`, async(() => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     const app = fixture.debugElement.componentInstance;
-//     expect(app.title).toEqual('app works!');
-//   }));
+  let comp: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
+  let de: DebugElement;
+  let el: HTMLElement;
+  let authService: AuthService;
 
-//   it('should render title in a h1 tag', async(() => {
-//     const fixture = TestBed.createComponent(AppComponent);
-//     fixture.detectChanges();
-//     const compiled = fixture.debugElement.nativeElement;
-//     expect(compiled.querySelector('h1').textContent).toContain('app works!');
-//   }));
-// });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        LoginComponent
+      ],
+      providers: [
+        { provide: Router, useClass: class { navigate = jasmine.createSpy("navigate"); } },
+        { provide: APP_BASE_HREF, useValue: '/' },
+        { provide: AuthService, useClass: AuthServiceMock },
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
+    });
+    TestBed.compileComponents();
+
+    fixture = TestBed.createComponent(LoginComponent);
+    comp = fixture.componentInstance;
+    authService = fixture.debugElement.injector.get(AuthService);
+  });
+
+  it('should log in the user', async(() => {
+    comp.login();
+    fixture.detectChanges();
+    expect(authService.isLoggedIn).toBeTruthy();
+  }));
+
+  it('should log out the user', async(() => {
+    comp.logout();
+    fixture.detectChanges();
+    expect(authService.isLoggedIn).toBeFalsy();
+  }));
+});
