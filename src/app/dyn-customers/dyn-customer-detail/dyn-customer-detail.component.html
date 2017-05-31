@@ -1,13 +1,20 @@
 <div fxLayout="row" class="dyn-card">
   <md-card fxLayout="column" fxFlex class="flex-container" *ngIf="customer">
-    <div fxLayout="row" class="dyn-btn-container" fxLayoutAlign="end center" >
-      <button md-button (click)="deleteCustomer()"><md-icon class="dyn-icons-black">delete</md-icon></button>
-      <button md-button (click)="saveCustomer()"><md-icon class="dyn-icons-black" svgIcon="save"></md-icon></button>
+    <div fxLayout="row" class="dyn-btn-container" fxLayoutAlign="end center">
+      <button md-button (click)="saveCustomer()"><md-icon class="dyn-icons-primary" svgIcon="save"></md-icon></button>
+      <button md-button (click)="deleteCustomer()"><md-icon class="dyn-icons-warn">delete</md-icon></button>
     </div>
-    <form [formGroup]="customerForm" novalidate fxLayout="column">
+    <form [formGroup]="customerForm" novalidate fxLayout="column" fxLayoutGap="10px">
       <md-input-container fxFlexFill>
-        <input mdInput placeholder="Name" formControlName="name"/>
+        <input mdInput placeholder="Name" formControlName="name" />
       </md-input-container>
+      <div fxLayout="row">
+        <md-select placeholder="Type" formControlName="phoneType" name="phoneType">
+          <md-option *ngFor="let opt of phoneTypes" [value]="opt.value">
+            {{opt.name}}
+          </md-option>
+        </md-select>
+      </div>
     </form>
   </md-card>
 </div>

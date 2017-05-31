@@ -6,7 +6,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import 'rxjs/add/operator/switchMap';
 
 import { Customer } from '../shared/dyn-customer.model';
-import { CustomerService } from '../shared/dyn-customer.service'
+import { CustomerService } from '../shared/dyn-customer.service';
+import { PhoneTypes } from '../shared/dyn-phone-types.enum';
 import { DynDialogService } from '../../dyn-shell/dyn-confirm/dyn-confirm.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class CustomerDetailComponent {
   customerId: String;
   result: any;
   customerForm: FormGroup;
+  phoneTypes = [{name: 'Mobile', value: 1}, {name: 'Land Line', value: 2}, {name: 'Business', value: 3}];
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +32,7 @@ export class CustomerDetailComponent {
   ) { }
 
   ngOnInit() {
+
     this.createForm();
 
     this.route.params
@@ -37,7 +40,7 @@ export class CustomerDetailComponent {
       .subscribe((customer: Customer) => {
         this.customer = customer[0]
 
-        this.customerForm.setValue({
+        this.customerForm.patchValue({
           name: this.customer.name
         });
       });
@@ -45,7 +48,8 @@ export class CustomerDetailComponent {
 
   createForm() {
     this.customerForm = this.fb.group({
-      name: ''
+      name: '',
+      phoneType: ['']
     });
   }
 
