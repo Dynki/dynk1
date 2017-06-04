@@ -68,7 +68,7 @@ html, body {
 }
 
 .dyn-icons-primary svg {
-  fill: #FFC107;
+  fill: #2f475b;
 }
 
 .dyn-icons-warn svg {
@@ -81,6 +81,14 @@ html, body {
 
 .dyn-card {
   margin: 10px !important;
+}
+
+.dyn-btn-container {
+  margin-bottom: 10px!important;
+}
+
+.dyn-card-header {
+  font-size: 26px;
 }
 
 .dyn-background-image {
@@ -97,9 +105,9 @@ html, body {
   color: #ffffff!important;
 }
 
-.mat-input-placeholder {
-  color: #ffffff!important;
-}
+// .mat-input-placeholder {
+//   color: #ffffff!important;
+// }
 
 .mat-checkbox-label {
   color: #ffffff!important;
@@ -113,6 +121,9 @@ html, body {
   stroke: #ffffff!important;
 }
 
+.dyn-card-bg {
+  background-color: #e7e9eb;
+}
 
 .dyn-logo {
   height: 27px;

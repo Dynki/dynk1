@@ -41,7 +41,14 @@ export class CustomerDetailComponent {
         this.customer = customer[0]
 
         this.customerForm.patchValue({
-          name: this.customer.name
+          name: this.customer.name,
+          addr1: this.customer.addr1,
+          addr2: this.customer.addr2,
+          addr3: this.customer.addr3,
+          addr4: this.customer.addr4,
+          addr5: this.customer.addr5,
+          postcode: this.customer.postcode,
+          
         });
       });
   }
@@ -49,6 +56,12 @@ export class CustomerDetailComponent {
   createForm() {
     this.customerForm = this.fb.group({
       name: '',
+      addr1: '',
+      addr2: '',
+      addr3: '',
+      addr4: '',
+      addr5: '',
+      postcode: '',
       phoneType: ['']
     });
   }

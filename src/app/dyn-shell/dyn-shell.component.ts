@@ -26,6 +26,7 @@ export class ShellComponent {
     iconRegistry.addSvgIcon('face', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/face.svg'));
     iconRegistry.addSvgIcon('event', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/event.svg'));
     iconRegistry.addSvgIcon('save', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/save.svg'));
+    iconRegistry.addSvgIcon('delete', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icons/delete.svg'));
     iconRegistry.addSvgIcon('facebook', sanitizer.bypassSecurityTrustResourceUrl('assets/img/facebook-box.svg'));
     iconRegistry.addSvgIcon('twitter', sanitizer.bypassSecurityTrustResourceUrl('assets/img/twitter.svg'));
     iconRegistry.addSvgIcon('google', sanitizer.bypassSecurityTrustResourceUrl('assets/img/google.svg'));
