@@ -42,6 +42,8 @@ html, body {
   vertical-align: text-bottom;
 }
 
+.mat-select-placeholder.mat-floating-placeholder {transform: scale(.75) translateY(7px) !important;}
+
 .dynki-dark-theme .mat-input-underline {
     border-color: rgba(255, 255, 255, 0.28)!important;
 }

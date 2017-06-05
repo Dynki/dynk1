@@ -10,7 +10,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 
-import { Customer } from './dyn-customer.model';
+import { Customer } from './dyn-customer.interface';
 import { DynToastService } from '../../dyn-shell/shared/dyn-toast.service';
 
 @Injectable()

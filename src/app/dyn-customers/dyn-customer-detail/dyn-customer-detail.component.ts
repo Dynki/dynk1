@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
 import 'rxjs/add/operator/switchMap';
 
-import { Customer } from '../shared/dyn-customer.model';
+import { Customer } from '../shared/dyn-customer.interface';
 import { CustomerService } from '../shared/dyn-customer.service';
 import { PhoneTypes } from '../shared/dyn-phone-types.enum';
 import { DynDialogService } from '../../dyn-shell/dyn-confirm/dyn-confirm.service';
@@ -42,13 +42,8 @@ export class CustomerDetailComponent {
 
         this.customerForm.patchValue({
           name: this.customer.name,
-          addr1: this.customer.addr1,
-          addr2: this.customer.addr2,
-          addr3: this.customer.addr3,
-          addr4: this.customer.addr4,
-          addr5: this.customer.addr5,
-          postcode: this.customer.postcode,
-          
+          addresses: this.customer.addresses ? this.customer.addresses : [],
+          phoneNumbers: this.customer.phoneNumbers ? this.customer.phoneNumbers : []
         });
       });
   }
@@ -56,14 +51,51 @@ export class CustomerDetailComponent {
   createForm() {
     this.customerForm = this.fb.group({
       name: '',
-      addr1: '',
-      addr2: '',
-      addr3: '',
-      addr4: '',
-      addr5: '',
-      postcode: '',
-      phoneType: ['']
+      addresses: this.fb.array([
+        this.initAddress(),
+      ]),
+      phoneNumbers: this.fb.array([
+        this.initPhoneNumber(),
+      ]),
     });
+  }
+
+  initAddress() {
+    return this.fb.group({
+      addr1: ['', Validators.required],
+      addr2: [''],
+      addr3: [''],
+      addr4: [''],
+      addr5: [''],
+      postcode: ['']
+    });
+  }
+
+  addAddress() {
+    const control = <FormArray>this.customerForm.controls['addresses'];
+    control.push(this.initAddress());
+  }
+
+  removeAddress(i: number) {
+    const control = <FormArray>this.customerForm.controls['addresses'];
+    control.removeAt(i);
+  }
+
+  initPhoneNumber() {
+    return this.fb.group({
+      type: ['', Validators.required],
+      number: ['', Validators.required]
+    });
+  }
+
+  addPhoneNumber() {
+    const control = <FormArray>this.customerForm.controls['phoneNumbers'];
+    control.push(this.initPhoneNumber());
+  }
+
+  removePhoneNumber(i: number) {
+    const control = <FormArray>this.customerForm.controls['phoneNumbers'];
+    control.removeAt(i);
   }
 
   saveCustomer() {
@@ -72,7 +104,6 @@ export class CustomerDetailComponent {
     this.service.saveCustomer(this.customer);
     this.router.navigate(['/customers']);
   }
-
 
   deleteCustomer() {
     this.dialogService.confirm('Confirm Delete', 'Delete this customer, are you sure?')

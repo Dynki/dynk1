@@ -3,7 +3,7 @@ import { MdIconRegistry } from '@angular/material';
 import { Observable }       from 'rxjs/Observable';
 import { Router }   from '@angular/router';
 
-import { Customer } from '../shared/dyn-customer.model';
+import { Customer } from '../shared/dyn-customer.interface';
 import { CustomerService } from '../shared/dyn-customer.service';
 
 @Component({

@@ -6,39 +6,52 @@
       <button md-button (click)="saveCustomer()"><md-icon class="dyn-icons-primary" svgIcon="save"></md-icon></button>
       <button md-button (click)="deleteCustomer()"><md-icon class="dyn-icons-warn" svgIcon="delete"></md-icon></button>
     </div>
-    <form [formGroup]="customerForm" novalidate fxLayout="row" fxLayoutGap="10px">
-      <md-card fxLayout="column" fxFlex fxLayoutGap="10px">
-        <md-input-container>
+    <form [formGroup]="customerForm" novalidate fxLayout="column" fxLayoutGap="10px">
+      <md-card fxLayout="row">
+        <md-input-container fxFlex>
           <input mdInput placeholder="Name" formControlName="name" />
         </md-input-container>
-        <md-input-container>
-          <input mdInput placeholder="Address Line 1" formControlName="addr1" />
-        </md-input-container>
-        <md-input-container>
-          <input mdInput placeholder="Address Line 2" formControlName="addr2" />
-        </md-input-container>
-        <md-input-container>
-          <input mdInput placeholder="Address Line 3" formControlName="addr3" />
-        </md-input-container>
-        <md-input-container>
-          <input mdInput placeholder="Address Line 4" formControlName="addr4" />
-        </md-input-container>
-        <md-input-container>
-          <input mdInput placeholder="Address Line 5" formControlName="addr5" />
-        </md-input-container>
-        <md-input-container>
-          <input mdInput placeholder="Postcode" formControlName="postcode" />
-        </md-input-container>
       </md-card>
-      <md-card fxLayout="column">
-        <div fxLayout="row">
-          <md-select placeholder="Phone Type" formControlName="phoneType" name="phoneType">
-            <md-option *ngFor="let opt of phoneTypes" [value]="opt.value">
-              {{opt.name}}
-            </md-option>
-          </md-select>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div fxLayout="row" formArrayName="addresses" fxFlex>
+          <md-card fxLayout="column" *ngFor="let address of customerForm.controls.addresses.controls; let i=index" fxFlex>
+            <div fxLayout="column" [formGroupName]="i">
+              <md-input-container>
+                <input mdInput placeholder="Address Line 1" formControlName="addr1" />
+              </md-input-container>
+              <md-input-container>
+                <input mdInput placeholder="Address Line 2" formControlName="addr2" />
+              </md-input-container>
+              <md-input-container>
+                <input mdInput placeholder="Address Line 3" formControlName="addr3" />
+              </md-input-container>
+              <md-input-container>
+                <input mdInput placeholder="Address Line 4" formControlName="addr4" />
+              </md-input-container>
+              <md-input-container>
+                <input mdInput placeholder="Address Line 5" formControlName="addr5" />
+              </md-input-container>
+              <md-input-container>
+                <input mdInput placeholder="Postcode" formControlName="postcode" />
+              </md-input-container>
+            </div>
+          </md-card>
         </div>
-      </md-card>
+        <div fxLayout="row" formArrayName="phoneNumbers">
+          <md-card fxLayout="column" *ngFor="let phoneNumber of customerForm.controls.phoneNumbers.controls; let i=index" fxFlex>
+            <div fxLayout="row" [formGroupName]="i" fxLayoutGap="10px" fxLayoutAlign="center center">
+              <md-select placeholder="Phone Type" formControlName="type">
+                <md-option *ngFor="let opt of phoneTypes" [value]="opt.value">
+                  {{opt.name}}
+                </md-option>
+              </md-select>
+              <md-input-container>
+                <input mdInput placeholder="Number" formControlName="number" />
+              </md-input-container>
+            </div>
+          </md-card>
+        </div>
+      </div>
     </form>
   </md-card>
 </div>
