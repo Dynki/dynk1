@@ -6,13 +6,13 @@
       <button md-button (click)="saveCustomer()"><md-icon class="dyn-icons-primary" svgIcon="save"></md-icon></button>
       <button md-button (click)="deleteCustomer()"><md-icon class="dyn-icons-warn" svgIcon="delete"></md-icon></button>
     </div>
-    <form [formGroup]="customerForm" novalidate fxLayout="column" fxLayoutGap="10px">
+    <form [formGroup]="customerForm" novalidate fxLayout="column" fxLayoutGap="10px" class="dyn-form">
       <md-card fxLayout="row">
         <md-input-container fxFlex>
           <input mdInput placeholder="Name" formControlName="name" />
         </md-input-container>
       </md-card>
-      <div fxLayout="row" fxLayoutGap="10px">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
         <div fxLayout="row" formArrayName="addresses" fxFlex>
           <md-card fxLayout="column" *ngFor="let address of customerForm.controls.addresses.controls; let i=index" fxFlex>
             <div fxLayout="column" [formGroupName]="i">
