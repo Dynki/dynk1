@@ -15,6 +15,7 @@ export class LoginComponent {
 
   constructor(public authService: AuthService, public router: Router) {
     this.termsAgreed = true;
+    this.email = this.authService.currentUserEmail;
   }
   login() {
     this.authService.login(this.email, this.password);
@@ -23,7 +24,8 @@ export class LoginComponent {
     this.authService.logout();
   }
   signUp() {
-    this.authService.signUp(this.email, this.password, this.termsAgreed);
+    this.authService.currentUserEmail = this.email;
+    this.router.navigate(['/signup']);
   }
   forgotPassword(){
     this.authService.forgotPassword(this.email);

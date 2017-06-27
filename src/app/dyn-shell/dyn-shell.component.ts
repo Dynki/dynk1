@@ -31,7 +31,9 @@ export class ShellComponent {
     iconRegistry.addSvgIcon('twitter', sanitizer.bypassSecurityTrustResourceUrl('assets/img/twitter.svg'));
     iconRegistry.addSvgIcon('google', sanitizer.bypassSecurityTrustResourceUrl('assets/img/google.svg'));
 
-    auth.getAuthenticated().subscribe(e => this.isLoggedIn = e);
+    auth.isLoggedIn.subscribe(e => { 
+      this.isLoggedIn = e
+    });
 
     window.onresize = (e) => {
       this.checkMenu();

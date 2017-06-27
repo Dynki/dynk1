@@ -1,0 +1,67 @@
+.signup-btn{
+  background-color: #f9671e!important;
+  color: #fff!important;
+  margin-bottom: 10px;
+}
+
+
+.signup-text{
+  color: #ffffff;
+  font-weight: normal;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.signin-btn{
+    height: 44px;
+}
+
+.social-btn{
+    width: 94px;
+}
+
+.facebook-btn{
+    @extend .social-btn;
+
+    background-color: #3b5998;
+    height: 44px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.twitter-btn{
+    @extend .social-btn;
+
+    background-color: #48aae6;
+    height: 44px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.google-btn{
+    @extend .social-btn;
+
+    background-color: #dd4b38;
+    height: 44px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.facebook-icon svg{
+    path{
+        fill: #ffffff!important;
+    }
+}
+
+.social-btns{
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+
+.login-btns{
+    margin-top: 10px;
+}
+
+.orsignin{
+    margin: 20px;
+    color: #ffffff;
+}

@@ -1,6 +1,7 @@
 import * as firebase from 'firebase';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
@@ -10,10 +11,11 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { Router} from '@angular/router';
 
 import { DynToastService } from '../../dyn-shell/shared/dyn-toast.service';
+import { UserLoginService, UserRegistrationService } from "../shared/aws/dyn-cognito.service";
 
 @Injectable()
 export class AuthService {
-  isLoggedIn: boolean;
+  isLoggedIn: BehaviorSubject<boolean>;
   firebaseAuth: AngularFireAuth;
   currentUserName: string;
   currentUserEmail: string; 
@@ -21,33 +23,55 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  constructor(public afAuth: AngularFireAuth, public toastService: DynToastService, private router: Router) {
-    this.afAuth.authState.subscribe(auth => {
+  constructor(public awsAuth: UserLoginService, public awsRegistration: UserRegistrationService, public afAuth: AngularFireAuth, public toastService: DynToastService, private router: Router) {
+
+    this.currentUserEmail = '';
+
+    this.isLoggedIn = new BehaviorSubject(false);
+    
+    this.awsAuth.userAuthenticated.subscribe(auth => {
       if (auth === undefined || auth === null){
-        this.isLoggedIn = false;
+        this.isLoggedIn.next(false);
       } else {
-        this.isLoggedIn = true;
-        this.getUserDetails(auth);
-        this.router.navigate(['/']);
+        this.isLoggedIn.next(auth);
+        // this.getUserDetails(auth);
+        if (auth === false){
+          this.router.navigate(['/login']);
+        } else {
+          this.getUserDetails();
+          this.router.navigate(['/']);
+        }
       }
-    });
+
+    })
+    this.awsAuth.checkAuthStatus();
+
+    // this.afAuth.authState.subscribe(auth => {
+    //   if (auth === undefined || auth === null){
+    //     this.isLoggedIn = false;
+    //   } else {
+    //     this.isLoggedIn = true;
+    //     this.getUserDetails(auth);
+    //     this.router.navigate(['/']);
+    //   }
+    // });
   }
 
-  private getUserDetails(auth: firebase.User){
-    this.currentUserName = auth.displayName ? auth.displayName : auth.email;
-    this.currentUserEmail = auth.email;
+  private getUserDetails(){
+    this.currentUserName = this.awsAuth.currentUserEmail;
+    this.currentUserEmail = this.awsAuth.currentUserEmail;
   }
 
   login(username: string, password: string) {
-    this.afAuth.auth.signInWithEmailAndPassword(username, password )
-    .then(() => { 
+    this.awsAuth.login(username, password)
+    .then((r) => {
       this.toastService.showToast({ Title: 'Authentication', Msg: 'Logged In', Type: 'success' })
     })
     .catch((e) => this.toastService.showToast({ Title: 'Authentication', Msg: e.message, Type: 'error' }))
   }
 
   logout(): void {
-    this.afAuth.auth.signOut()
+    this.awsAuth.logout()
     .then(() => {
       this.toastService.showToast({ Title: 'Authentication', Msg: 'Logged Out', Type: 'success' })
       this.router.navigate(['/login']);
@@ -72,12 +96,37 @@ export class AuthService {
       return;
     }
      
-    this.afAuth.auth.createUserWithEmailAndPassword(username, password)
-    .then(() => this.toastService.showToast({ Title: 'Authentication', Msg: 'User created', Type: 'success' }))
+    this.awsRegistration.register(username, password)
+    .then(() => {
+      this.toastService.showToast({ Title: 'Authentication', Msg: 'User created', Type: 'success' })
+      this.router.navigate(['/confirm']);
+    })
     .catch((e) => this.toastService.showToast({ Title: 'Authentication', Msg: e.message, Type: 'error' }))
   }
 
-  getAuthenticated(): Observable<any> { return this.afAuth.authState; }
+  confirmCode(username: string, code: string): void {
+    
+    if (username === '' || username === null || username === undefined) {
+      this.toastService.showToast({ Title: 'Invalid Email', Msg: 'Please enter a valid email addfress', Type: 'info' })
+      return;
+    } 
+
+    if (code === '' || code === null || code === undefined) {
+      this.toastService.showToast({ Title: 'Invalid Code', Msg: 'Please enter a valid confirmation code', Type: 'info' })
+      return;
+    } 
+
+    this.awsRegistration.confirmRegistration(username, code)
+    .then(() => { 
+      this.toastService.showToast({ Title: 'Authentication', Msg: 'User Confirmed', Type: 'success' }) 
+      this.awsAuth.checkAuthStatus();
+    })
+    .catch((e) => this.toastService.showToast({ Title: 'Authentication', Msg: e.message, Type: 'error' }))
+  }
+
+  getAuthenticated(): BehaviorSubject<boolean> { 
+    return this.isLoggedIn;
+  }
 
   forgotPassword(email: string) :void {
     firebase.auth().sendPasswordResetEmail(email)

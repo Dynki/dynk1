@@ -24,6 +24,7 @@ import { ConfirmationComponent } from './dyn-confirm/dyn-confirm.component';
 import { CustomerModule } from '../dyn-customers/dyn-customer.module';
 import { AuthModule } from '../dyn-auth/dyn-auth.module';
 import { TruncatePipe } from './shared/dyn-truncate.pipe';
+import { DynamoDBService } from '../shared/aws/ddb.service';
 
 // other imports 
 @NgModule({
@@ -64,7 +65,8 @@ import { TruncatePipe } from './shared/dyn-truncate.pipe';
     ToastyService,
     ToastyConfig,
     DynToastService,
-    DynDialogService
+    DynDialogService,
+    DynamoDBService
   ],
   entryComponents: [ConfirmationComponent]
 })
